@@ -1,16 +1,31 @@
 {% extends 'layout.html' %}
+{% load static %}
+
 {% block title %}
 Chatbot
+{% endblock %}
+
+{% block js_script %}
+<script src="{% static 'js/chatbot.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
 <body>
     <div class="container">
-        <div class="chatbox">
-            <div class="chatbox_header">
-                <div class="profilepic" id="profilepic">
+        <div class="chat_interface">
+            <div class="chat_interface_header">
+                <div class="profilepic" id="profilepic"></div>
+                <div class="chat_interface_header_text">
+                    <h1 class="chat_interface_header_heading">Chatbot</h1>
+                    <p class"chat_interface_header_disclaimer">Remember everything the chatbot generates is made up.</p>
                 </div>
-
+            </div>
+            <div class="chat_interface_messages">
+                <div></div>
+            </div>
+            <div class="chat_interface_footer">
+                <input type="text" placeholder="Write a message...">
+                <button class="chat_interface_send chat_interface_send_button">Send</button>
             </div>
 
         </div>

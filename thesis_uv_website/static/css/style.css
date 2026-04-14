@@ -78,15 +78,16 @@ Chatbot CSS
 */
 
 .chat_interface {
-    background: #ececec;
-    height: 100rem;
-    width: 75rem;
-    align-content: center; 
+    background: #cfcfcf;
+    height: 40rem;
+    width: 75%;
+    justify-self: center;
     border-radius: 0.1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat_interface_header {
-    position: sticky;
     top: 0;
     background: #1b1b1b;
     display: flex;
@@ -143,7 +144,6 @@ Chatbot CSS
 }
 
 .chat_interface_footer {
-    position: sticky;
     bottom: 0;
     display: flex;
     flex-direction: row;
@@ -153,7 +153,6 @@ Chatbot CSS
     background: #1b1b1b;
     border-bottom-left-radius: 0.1rem;
     border-bottom-right-radius: 0.1rem;
-    margin-top: 1rem;
 }
 
 .chat_interface_footer input {
