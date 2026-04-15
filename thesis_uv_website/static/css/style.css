@@ -9,7 +9,6 @@ Base CSS
 }
 
 body {
-    min-height: 100vh;
     background-color: #f1f1f1;
     display: flex;
     flex-direction: column;
@@ -17,6 +16,7 @@ body {
     font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
     color: #0b0b0b;
+    min-height: 10vh;
 }
 
 main {
@@ -31,11 +31,12 @@ section{
 
 
 h1 {
-    font-size: 2.1rem;
+    font-size: 1.75rem;
+    align-self: center;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.25rem;
 }
 
 a {
@@ -69,9 +70,74 @@ img {
     border-radius: 0.75rem;
 }
 
+.container {
+    background: #e1e1e1;
+    min-height: 40rem;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
 /*
 Home Page CSS
 */
+
+.title {
+    background:#b8b8b8;
+    padding: 0.5rem;
+    border-radius: 0.1rem;
+    text-align: center;
+}
+
+.intro {
+    background: #d0d0d0;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.home_body {
+    margin: 1rem;
+}
+
+.consent_form {
+    background: #ebebeb;
+    height: 20rem;
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    padding: 1.25rem;
+    margin: 1rem;
+    width: 60%;
+    margin-right: auto;
+}
+
+.checkbox_body {
+    background: #d0d0d0;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.begin_error {
+    color:#e21010;
+    display: none;
+}
+
+.begin_button {
+    background-color: #b8b8b8;
+    color: #0b0b0b;
+    border: none;
+    display: block;
+    margin: 1rem auto;
+    margin-bottom: 0rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 0.1rem;
+    text-align: center;
+    width: fit-content;
+}
 
 /*
 Chatbot CSS
@@ -156,7 +222,7 @@ Chatbot CSS
 }
 
 .chat_interface_footer input {
-    width: 80%;
+    width: 70%;
     border: none;
     padding: 0.75rem 0.75rem;
     border-radius: 0.1rem;
@@ -170,7 +236,8 @@ Chatbot CSS
 .chat_interface_send_button button,
 .chat_interface_send_button button:focus,
 .chat_interface_send_button button:visited {
-    padding: 0.75rem;
+    width: 1%;
+    padding: 0.5rem;
     background: #e8e8e8;
     border: none;
     outline: none;

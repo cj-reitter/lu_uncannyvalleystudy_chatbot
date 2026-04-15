@@ -1,24 +1,24 @@
-import { Ollama } from 'ollama'
-import settings from django.conf 
+/*import { Ollama } from 'ollama'
+import settings from django.conf*/
 
-const fs = require('fs/promises');
-const path = require('path');
+/*const fs = require('fs/promises');
+const path = require('path');*/
 
 
-OLLAMA_API_KEY = settings.OLLAMA_API_KEY
+/*OLLAMA_API_KEY = settings.OLLAMA_API_KEY
 
 const ollama = new Ollama({
     host: "https://ollama.com",
     headers: {Authorization: 'Bearer ' + OLLAMA_API_KEY},
-});
+});*/
 
 
 class Chatbot {
 
     constructor() {
         this.args = {
-            chatBox: document.querySelector('.chatbox'),
-            sendButton: document.querySelector('.send_button')
+            chatInterface: document.querySelector('.chat_interface'),
+            sendButton: document.querySelector('chat_interface_send_button')
         }
 
         this.state = false;
@@ -46,8 +46,9 @@ class Chatbot {
         if (text1 === "") {
             return
         }
+        console.log('Hello')
 
-        let msg1 = { role: "user", content: text1}
+        /*let msg1 = { role: "user", content: text1}
         this.messages.push(msg1);
         const response = await ollama.chat({
             model: 'deepseek-v3.2:cloud',
@@ -64,7 +65,7 @@ class Chatbot {
             console.error('Error:', error);
             this.updateChatText(chatbot)
             textField.value = ''
-        });
+        });*/
     }
 
     updateChatText(chatbot){
@@ -85,13 +86,13 @@ class Chatbot {
     }
 
     generate_profile_pic() {
-    const profilePicPath = path.join(__dirname, 'media');
-    const files = fs.readdir(profilePicPath);
+    /*const profilePicPath = path.join(__dirname, 'media');
+    const files = fs.readdir(profilePicPath);*/
 
     const profileContainer = document.getElementById("profilepic")
     profileContainer.innerHTML = "";
     const img = document.createElement("img");
-    img.src = `/static/media/${files[Math.floor(Math.random() * files.length)]}`;
+    img.src = `/static/media/${files[Math.floor(Math.random() * 29)]}.jpg`;
     profileContainer.appendChild(img);
     }
 
