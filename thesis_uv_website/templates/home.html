@@ -1,6 +1,11 @@
 {% extends 'layout.html' %}
+{% load static %}
 {% block title %}
     Home
+{% endblock %}
+
+{% block add_js_script %}
+<script src="{% static 'js/home.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}

@@ -10,9 +10,8 @@
         {% endblock %}
     </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    {% block js_script %}
     <script src="{% static 'js/main.js' %}" defer></script>
+    {% block add_js_script %}
     {% endblock %}
 
 </head>

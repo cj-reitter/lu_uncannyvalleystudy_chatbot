@@ -35,7 +35,7 @@ class Chatbot {
     }
 
     loadProfilePic() {
-        const randomNum = Math.floor(Math.random() * 29) + 1;
+        const randomNum = Math.floor(Math.random() * 50) + 1;
         const profileContainer = document.getElementById('profilepic');
         if (profileContainer) {
             profileContainer.innerHTML = '';
