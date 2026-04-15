@@ -1,103 +1,115 @@
-/*import { Ollama } from 'ollama'
-import settings from django.conf*/
-
-/*const fs = require('fs/promises');
-const path = require('path');*/
-
-
-/*OLLAMA_API_KEY = settings.OLLAMA_API_KEY
-
-const ollama = new Ollama({
-    host: "https://ollama.com",
-    headers: {Authorization: 'Bearer ' + OLLAMA_API_KEY},
-});*/
-
-
 class Chatbot {
 
     constructor() {
         this.args = {
             chatInterface: document.querySelector('.chat_interface'),
-            sendButton: document.querySelector('chat_interface_send_button')
+            messagesContainer: document.querySelector('.chat_interface_messages'),
+            inputField: document.querySelector('.chat_interface_footer input'),
+            sendButton: document.querySelector('.chat_interface_send_button')
         }
 
-        this.state = false;
         this.messages = [];
     }
 
     display() {
-        generate_profile_pic();
-        
-        const {chatBox, sendButton} = this.args;
+        const {inputField, sendButton} = this.args;
 
-        sendButton.addEventListener('click', () => this.onSendButton(chatBox))
+        this.addMessageToUI('assistant', 'Hello, how are you today?');
+        this.loadProfilePic();
 
-        const node  = chatBox.querySelector('input');
-        node.addEventListener("keyup", ({key}) => {
-            if (key === "Enter") {
-                this.onSendButton(chatBox)
-            }
-        })
-    }
-
-    async onSendButton(chatbot){
-        var textField = chatbox.querySelector('input');
-        let text1 = textField.value
-        if (text1 === "") {
-            return
+        if (sendButton) {
+            sendButton.addEventListener('click', () => this.onSendButton());
         }
-        console.log('Hello')
 
-        /*let msg1 = { role: "user", content: text1}
-        this.messages.push(msg1);
-        const response = await ollama.chat({
-            model: 'deepseek-v3.2:cloud',
-            messages: chatbot.messages,
-            stream: true,
-        })
-        .then(r => response.part)
-        .then(r => {
-            let msg2 = {role: 'assistant', content: r.message.content};
-            this.messages.push(msg2);
-            this.updateChatText(chatbot)
-            textField.value = ''
-        }).catch((error) => {
+        if (inputField) {
+            inputField.addEventListener('keyup', ({key}) => {
+                if (key === 'Enter') {
+                    this.onSendButton();
+                }
+            });
+        }
+    }
+
+    loadProfilePic() {
+        const randomNum = Math.floor(Math.random() * 29) + 1;
+        const profileContainer = document.getElementById('profilepic');
+        if (profileContainer) {
+            profileContainer.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = `/media/${randomNum}.jpg`;
+            img.alt = 'Chatbot Profile';
+            profileContainer.appendChild(img);
+        }
+    }
+
+    async onSendButton() {
+        const {inputField, messagesContainer} = this.args;
+        const userMessage = inputField.value.trim();
+        
+        if (userMessage === '') {
+            return;
+        }
+
+        this.addMessageToUI('user', userMessage);
+        inputField.value = '';
+
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'messages_item messages_item--loading';
+        loadingDiv.textContent = 'Generating...';
+        loadingDiv.id = 'loading-indicator';
+        messagesContainer.appendChild(loadingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        try {
+            const response = await fetch('/api/chat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({message: userMessage})
+            });
+
+            if (!response.ok) {
+                throw new Error('Chat request failed');
+            }
+
+            const data = await response.json();
+            const botMessage = data.response;
+            
+            // Remove loading indicator
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (loadingIndicator) {
+                loadingIndicator.remove();
+            }
+            
+            // Add bot response to display
+            this.addMessageToUI('assistant', botMessage);
+            
+        } catch (error) {
             console.error('Error:', error);
-            this.updateChatText(chatbot)
-            textField.value = ''
-        });*/
-    }
-
-    updateChatText(chatbot){
-        var html = '';
-        this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.role === 'assistant')
-            {
-                html += '<div class="messages_item messages_item--bot">' + item.content + '</div>'
+            
+            // Remove loading indicator
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (loadingIndicator) {
+                loadingIndicator.remove();
             }
-            else
-            {
-                html += '<div class="messages_item messages_item--user">' + item.content + '</div>'
-            }
-        });
-
-        const chatMessage = chatbot.querySelector('.chatbot_messages');
-        chatMessage.innerHTML = html;
+            
+            this.addMessageToUI('assistant', 'Sorry, there was an error processing your message.');
+        }
     }
 
-    generate_profile_pic() {
-    /*const profilePicPath = path.join(__dirname, 'media');
-    const files = fs.readdir(profilePicPath);*/
-
-    const profileContainer = document.getElementById("profilepic")
-    profileContainer.innerHTML = "";
-    const img = document.createElement("img");
-    img.src = `/static/media/${files[Math.floor(Math.random() * 29)]}.jpg`;
-    profileContainer.appendChild(img);
+    addMessageToUI(role, content) {
+        const {messagesContainer} = this.args;
+        const messageDiv = document.createElement('div');
+        const messageClass = role === 'assistant' ? 'messages_item--bot' : 'messages_item--user';
+        messageDiv.className = `messages_item ${messageClass}`;
+        messageDiv.textContent = content;
+        messagesContainer.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
-
 }
-
 
 const chatbot = new Chatbot();
 chatbot.display();

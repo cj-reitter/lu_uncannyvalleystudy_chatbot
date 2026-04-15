@@ -145,9 +145,9 @@ Chatbot CSS
 */
 
 .chat_interface {
-    background: #cfcfcf;
+    background: #e0e0e0;
     height: 40rem;
-    width: 75%;
+    width: 90%;
     justify-self: center;
     border-radius: 0.1rem;
     display: flex;
@@ -167,11 +167,26 @@ Chatbot CSS
 }
 
 .profilepic {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
     margin-right: 0.75rem;
 }
 
+.profilepic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
+    border-radius: 0;
+}
+
+
 .chat_interface_header_text {
-    color: #fafafa;
+    color: #fefefe;
 }
 
 .chat_interface_header_heading {
@@ -182,23 +197,29 @@ Chatbot CSS
     margin-top: auto;
     display: flex;
     overflow-y: scroll;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 0 1.25rem;
 }
 
 .messages_item {
-    background: #cccccc;
+    background: #c0c0c0;
     max-width: 70%;
     width: fit-content;
     margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
     padding: 0.5rem 0.75rem;
 }
 
-.messages_item--bot {
+.messages_item--bot,
+.messages_item--loading {
     margin-right: auto;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
+}
+
+.messages_item--loading {
+    font-style: italic;
 }
 
 .messages_item--user {

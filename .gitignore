@@ -1,2 +1,3 @@
-# Ignores virtual enviornmnet.
+# Ignores virtual enviornment and environment variables.
 .venv/
+.env
