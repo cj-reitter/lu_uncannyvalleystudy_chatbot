@@ -25,6 +25,7 @@ urlpatterns = [
     path('', views.homepage),
     path('chatbot/', views.chatbot),
     path('api/chat/', views.chat_api),
+    path('survey/', views.survey),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

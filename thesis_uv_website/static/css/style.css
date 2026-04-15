@@ -144,6 +144,16 @@ Home Page CSS
 Chatbot CSS
 */
 
+.chatbot-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+}
+
+
 .chat_interface {
     background: #e0e0e0;
     height: 40rem;
@@ -183,7 +193,6 @@ Chatbot CSS
     border: none;
     border-radius: 0;
 }
-
 
 .chat_interface_header_text {
     color: #fefefe;
@@ -265,4 +274,18 @@ Chatbot CSS
     outline: none;
     border-radius: 0.1rem;
     cursor: pointer;
+}
+
+/*
+Profile Pic CSS Changes
+*/
+
+.chat_interface_2 {
+    width: auto;
+}
+
+.profilepic_2 {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 10%;
 }

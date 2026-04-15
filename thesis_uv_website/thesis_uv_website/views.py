@@ -6,7 +6,6 @@ from django.conf import settings
 from numpy import random as rd
 from ollama import Client
 import json
-import os
 
 # Home View
 
@@ -32,31 +31,6 @@ bot_greeting = {
     'role': 'assistant',
     'content': 'Hello, how are you today?'
 }
-
-@csrf_exempt
-@require_http_methods(["GET"])
-def get_random_profile_pic(request):
-    """Return a random image from the media folder."""
-    try:
-        media_path = settings.MEDIA_ROOT
-        if not os.path.exists(media_path):
-            return JsonResponse({'error': 'Media folder not found'}, status=404)
-        
-        # Get all image files
-        image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.webp'}
-        images = [f for f in os.listdir(media_path) 
-                  if os.path.isfile(os.path.join(media_path, f)) 
-                  and os.path.splitext(f)[1].lower() in image_extensions]
-        
-        if not images:
-            return JsonResponse({'error': 'No images found'}, status=404)
-        
-        random_image = rd.choice(images)
-        image_url = f'{settings.MEDIA_URL}{random_image}'
-        
-        return JsonResponse({'image_url': image_url})
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
 
 @csrf_exempt
 @require_http_methods(["POST"])
@@ -90,8 +64,11 @@ def chat_api(request):
 
 # Chatbot View
 def chatbot(request):
-    #chatbot_templates = ['chatbot_1.html', 'chatbot_2.html', 'chatbot_3.html']
-    chatbot_templates = ['chatbot_1.html']
+    chatbot_templates = ['chatbot_1.html', 'chatbot_2.html']
     ran_chatbot_template = rd.choice(chatbot_templates)
 
     return render(request, ran_chatbot_template)
+
+# Survey View
+def survey(request):
+    return render(request, 'survey.html')

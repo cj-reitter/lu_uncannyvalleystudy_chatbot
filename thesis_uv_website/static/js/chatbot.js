@@ -17,6 +17,10 @@ class Chatbot {
         this.addMessageToUI('assistant', 'Hello, how are you today?');
         this.loadProfilePic();
 
+        setTimeout(() => {
+            window.location.href = '/survey';
+        }, 300000);
+
         if (sendButton) {
             sendButton.addEventListener('click', () => this.onSendButton());
         }
