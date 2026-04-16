@@ -16,7 +16,6 @@ body {
     font-size: 1rem;
     font-family: Arial, Helvetica, sans-serif;
     color: #0b0b0b;
-    min-height: 10vh;
 }
 
 main {
@@ -29,6 +28,9 @@ section{
     gap: 1rem;
 }
 
+p {
+    margin: 0.25rem 0;
+}
 
 h1 {
     font-size: 1.75rem;
@@ -55,7 +57,8 @@ button {
     font-size: 1.5rem;
     cursor: pointer;
     border: none;
-    background-color: #808080;
+    color:#0b0b0b;
+    background-color: #b8b8b8;
 }
 
 button:hover {
@@ -72,7 +75,6 @@ img {
 
 .container {
     background: #e1e1e1;
-    min-height: 40rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -98,8 +100,12 @@ Home Page CSS
     margin-right: 1rem;
 }
 
-.home_body {
-    margin: 1rem;
+.home_body,
+.survey_form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 .consent_form {
@@ -130,8 +136,7 @@ Home Page CSS
     color: #0b0b0b;
     border: none;
     display: block;
-    margin: 1rem auto;
-    margin-bottom: 0rem;
+    margin: 0.5rem auto;
     padding: 0.5rem;
     cursor: pointer;
     text-decoration: none;
@@ -289,3 +294,70 @@ Profile Pic CSS Changes
     height: 15rem;
     border-radius: 10%;
 }
+
+/*
+Survey Form CSS
+*/
+
+.survey_form {
+    max-width: 90%;
+}
+
+.survey_section {
+    background: #d0d0d0;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 0.1rem;
+}
+
+.question {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.question label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.rating_question {
+    background: #c0c0c0;
+}
+
+.rating_question label{
+    font-weight: normal;
+}
+
+.options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.options input[type='radio'] {
+    cursor: pointer;
+}
+
+.openended_question textarea {
+    padding: 0.75rem;
+    border: 0.1rem solid #0b0b0b;
+    border-radius: 0.1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 6rem;
+}
+
+.demographic_question input[type='number'],
+.demographic_question select {
+    padding: 0.75rem;
+    border: 0.1rem solid #0b0b0b;
+    border-radius: 0.1rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form_actions {
+    display: flex;
+    justify-content: center;
+}
+

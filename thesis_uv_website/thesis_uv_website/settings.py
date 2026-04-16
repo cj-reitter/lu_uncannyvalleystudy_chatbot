@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'thesis_survey'
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,3 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# API Key
-OLLAMA_API_KEY = os.environ.get("OLLAMA_API_KEY")

@@ -19,7 +19,7 @@ class Chatbot {
 
         setTimeout(() => {
             window.location.href = '/survey';
-        }, 300000);
+        }, 300/*000*/);
 
         if (sendButton) {
             sendButton.addEventListener('click', () => this.onSendButton());
