@@ -36,7 +36,7 @@ SECURE_HSTS_SECONDS = os.getenv('SECURE_HSTS_SECONDS')
 SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') != 'False'
 SECURE_HSTS_PRELOAD = os.getenv('SECURE_HSTS_PRELOAD') != 'False'
 
-ALLOWED_HOSTS = ['.lu_thesis_study.com']
+ALLOWED_HOSTS = ['.lu-thesis-study.com']
 
 # Application definition
 
