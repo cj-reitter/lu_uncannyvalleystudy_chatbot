@@ -74,6 +74,10 @@ def chatbot(request):
 def survey(request):
     return thesis_survey(request)
 
-# Feedback View - delegates to thesis_survey app
+# Feedback View
 def feedback(request):
     return thesis_feedback(request)
+
+# Ranking View
+def ranking(request):
+    return render(request, 'ranking.html')

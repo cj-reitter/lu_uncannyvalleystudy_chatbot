@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = '/home';
+                    window.location.href = '/ranking';
                 } else {
                     alert('Error: ' + (data.error || 'There was an error submitting your feedback.'));
                 }

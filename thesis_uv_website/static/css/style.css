@@ -50,8 +50,6 @@ a:hover {
     opacity: .75;
 }
 
-
-
 button {
     padding: 0.75rem 1.5rem;
     font-size: 1.5rem;
@@ -296,14 +294,14 @@ Profile Pic CSS Changes
 }
 
 /*
-Survey Form CSS
+Survey/Feedback Form CSS
 */
 
-.survey_form {
+.form {
     max-width: 90%;
 }
 
-.survey_section {
+.section {
     background: #d0d0d0;
     padding: 1.5rem;
     margin: 1rem 0;
@@ -359,5 +357,56 @@ Survey Form CSS
 .form_actions {
     display: flex;
     justify-content: center;
+}
+
+/*
+Avatar Ranking CSS
+*/
+
+.ranking_image_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.ranking_image {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 5%;
+}
+
+.ranking_section {
+    margin: 1rem auto;
+    width: 65%;
+}
+
+.ranking_form {
+    background: #c0c0c0;
+    padding: 1rem;
+    padding-bottom: 0;
+    border-radius: 0.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: center;
+    text-align: center;
+}
+
+.ranking_options {
+    background-color: #cccccc;
+    padding: 0.5rem;
+    justify-content: center;
+}
+
+.ranking_options label {
+    border: 0.1rem solid #808080;
+    border-radius: 0.1rem;
+    background-color: #e0e0e0;
+    padding: 0.1rem;
+}
+
+.ranking_button {
+    background-color: #808080;
 }
 

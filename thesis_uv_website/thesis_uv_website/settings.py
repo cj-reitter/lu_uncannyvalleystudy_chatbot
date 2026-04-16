@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'thesis_survey'
+    'thesis_survey',
+    'avatar_ranking',
 ]
 
 MIDDLEWARE = [

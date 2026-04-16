@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    Avatar Ranking
+{% endblock %}
+
+{% block add_js_script %}
+<script src="{% static 'js/ranking.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='title ranking_title'>
+            <h1>Avatar Human Likeness Ranking</h1>
+        </div>
+        <div class='intro ranking_intro'>
+            <p>Please rate each profile picture based on how human-like it appears. You may close this window after you are done ranking the images (you may complete as few or as many rankings as you wish).</p>
+            <p>Progress: <span id='progress_text'>0/0</span></p>
+        </div>
+        
+        <div class='section ranking_section'>
+            {% csrf_token %}
+            <div class='ranking_image_container'>
+                <img id='current_image' src='' alt='Avatar to rank' class='ranking_image'>
+            </div>
+            
+            <div class='ranking_form'>
+                <h2 class='ranking_form_text'> How human-like does this avatar appear?</h2>
+                <p class='ranking_form_text'>Select a percentage from 10% to 100% (10%: Industrial Robot, 100%: Healthy Human)</p>
+                
+                <div class='options ranking_options'>
+                    <label><input type='radio' name='ranking' value='10'> 10%</label>
+                    <label><input type='radio' name='ranking' value='20'> 20%</label>
+                    <label><input type='radio' name='ranking' value='30'> 30%</label>
+                    <label><input type='radio' name='ranking' value='40'> 40%</label>
+                    <label><input type='radio' name='ranking' value='50'> 50%</label>
+                    <label><input type='radio' name='ranking' value='60'> 60%</label>
+                    <label><input type='radio' name='ranking' value='70'> 70%</label>
+                    <label><input type='radio' name='ranking' value='80'> 80%</label>
+                    <label><input type='radio' name='ranking' value='90'> 90%</label>
+                    <label><input type='radio' name='ranking' value='100'> 100%</label>
+                </div>
+                
+                <div class='form_actions'>
+                    <button type='button' id='submit_ranking_btn' class='submit_button ranking_button'>Submit</button>
+                </div>
+                
+                <div id='ranking_message' class='ranking_message'></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

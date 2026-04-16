@@ -16,9 +16,9 @@
         <div class='intro survey_intro'>
             <p>Please answer the following questions about your experience with the chatbot.</p>
         </div>
-        <form id='survey_form' method='POST' class='survey_form'>
+        <form id='survey_form' method='POST' class='form survey_form'>
             {% csrf_token %}
-            <section class='survey_section'>
+            <section class='section survey_section'>
                 <h2>Rating Questions (Mandatory)</h2>
                 <h2>Rate your experience based on how much you agree/disagree with the following statements. (1 = Strongly Disagree, 5 = Strongly Agree)</h2>
                 <div class='question rating_question'>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </section>
-            <section class='survey_section'>
+            <section class='section survey_section'>
                 <h2>Open-Ended Questions (Optional)</h2>
                 
                 <div class='question openended_question'>
@@ -149,7 +149,7 @@
                     <textarea id='opq_4' name='opq_4' rows='4' placeholder='Enter text here...'></textarea>
                 </div>
             </section>
-                        <section class='survey_section'>
+            <section class='section survey_section'>
                 <h2>Demographics (Optional)</h2>
                 <div class='question demographic_question'>
                     <label for='age'>Age (Optional):</label>
