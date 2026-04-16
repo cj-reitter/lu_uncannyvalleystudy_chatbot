@@ -9,4 +9,69 @@
 {% endblock %}
 
 {% block content %}
+    <div class='container'>
+        <div class='title survey_title'>
+            <h1>Pre-Testing Feedback</h1>
+        </div>
+        <div class='intro survey_intro'>
+            <p>Please give feedback on the testing process and website experience below.</p>
+        </div>
+        
+        <form id='feedback_form' method='POST' class='survey_form'>
+            {% csrf_token %}
+            
+            <section class='survey_section'>
+                <h2>Feedback</h2>
+                
+                <div class='question openended_question'>
+                    <label for='f_1'>Did you encounter any technical issues during the study?</label>
+                    <textarea id='f_1' name='f_1' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+
+                <div class='question openended_question'>
+                    <label for='f_2'>What did you think about the website formatting/design?</label>
+                    <textarea id='f_2' name='f_2' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+
+                <div class='question openended_question'>
+                    <label for='f_3'>Did the chatbot respond with relatively short, friendly responses?</label>
+                    <textarea id='f_3' name='f_3' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+
+                <div class='question openended_question'>
+                    <label for='f_4'>Do you have any suggestions on the chatbot interface, specifically in regards to avatar placement?</label>
+                    <textarea id='f_4' name='f_4' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+
+                <div class='question openended_question'>
+                    <label for='f_5'>Was 5 minutes a sufficient amount of time to chat with the chatbot?</label>
+                    <textarea id='f_5' name='f_5' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+
+                <div class='question openended_question'>
+                    <label for='f_6'>Do you have any suggestions for questions that should be removed/added?</label>
+                    <textarea id='f_6' name='f_6' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+
+                <div class='question openended_question'>
+                    <label for='f_7'>Do the control questions (questions not related to the avatar) sufficiently obfuscate the nautre of the exam?</label>
+                    <textarea id='f_7' name='f_7' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+                
+                <div class='question openended_question'>
+                    <label for='f_8'>What suggestions do you have, if any, for improving this study in general?</label>
+                    <textarea id='f_8' name='f_8' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+                
+                <div class='question openended_question'>
+                    <label for='f_9'>Any additional feedback/comments?</label>
+                    <textarea id='f_9' name='f_9' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+            </section>
+            
+            <div class='form_actions'>
+                <button type='submit' class='submit_button'>Submit Feedback</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

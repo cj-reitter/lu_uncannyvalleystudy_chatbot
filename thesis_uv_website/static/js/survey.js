@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = new FormData(surveyForm);
             
-            const ratingQuestions = ['rq_1', 'rq_2', 'rq_3', 'rq_4', 'rq_5', 'rq_6', 'rq_7', 'rq_8', 'rq_9', 'rq_10'];
+            /*const ratingQuestions = ['rq_1', 'rq_2', 'rq_3', 'rq_4', 'rq_5', 'rq_6', 'rq_7', 'rq_8', 'rq_9', 'rq_10'];
+            
             let allRatingsAnswered = true;
             
             for (let question of ratingQuestions) {
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!allRatingsAnswered) {
                 alert('Please answer all rating questions to submit the survey.');
                 return;
-            }
+            }*/
             
             const data = {};
             for (let [key, value] of formData.entries()) {
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = '/feedback/';
+                    window.location.href = '/feedback';
                 } else {
                     alert('Error: ' + (data.error || 'There was an error submitting the survey.'));
                 }

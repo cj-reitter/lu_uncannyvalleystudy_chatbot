@@ -6,7 +6,7 @@ from django.conf import settings
 from numpy import random as rd
 from ollama import Client
 import json
-from thesis_survey.views import thesis_survey
+from thesis_survey.views import thesis_survey, thesis_feedback
 
 # Home View
 
@@ -74,6 +74,6 @@ def chatbot(request):
 def survey(request):
     return thesis_survey(request)
 
-# Feedback View
+# Feedback View - delegates to thesis_survey app
 def feedback(request):
-    return render(request, 'feedback.html')
+    return thesis_feedback(request)

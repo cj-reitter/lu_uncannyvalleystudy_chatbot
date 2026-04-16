@@ -40,3 +40,27 @@ class SurveyResponse(models.Model):
     def __str__(self):
         return f"Survey Response - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
 
+
+class FeedbackResponse(models.Model):
+    """Model to store pre-testing feedback responses."""
+    
+    f_1 = models.TextField(null=True, blank=True) 
+    f_2 = models.TextField(null=True, blank=True) 
+    f_3 = models.TextField(null=True, blank=True) 
+    f_4 = models.TextField(null=True, blank=True) 
+    f_5 = models.TextField(null=True, blank=True) 
+    f_6 = models.TextField(null=True, blank=True) 
+    f_7 = models.TextField(null=True, blank=True) 
+    f_8 = models.TextField(null=True, blank=True) 
+    f_9 = models.TextField(null=True, blank=True) 
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'Feedback Response'
+        verbose_name_plural = 'Feedback Responses'
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"Feedback Response - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
+

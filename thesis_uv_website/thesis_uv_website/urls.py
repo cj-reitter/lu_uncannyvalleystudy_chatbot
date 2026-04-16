@@ -7,6 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage),
+    path('home/', views.homepage),
     path('chatbot/', views.chatbot),
     path('api/chat/', views.chat_api),
     path('survey/', views.survey),

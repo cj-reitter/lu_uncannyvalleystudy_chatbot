@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import SurveyResponse
+from .models import SurveyResponse, FeedbackResponse
 import json
 
 def thesis_survey(request):
@@ -9,38 +9,34 @@ def thesis_survey(request):
     
     elif request.method == 'POST':
             try:
-                # Handle JSON POST request
                 data = json.loads(request.body)
                 
-                # Convert empty strings to None for optional fields
                 age = data.get('age')
                 age = int(age) if age and age.strip() else None
                 
                 gender = data.get('gender')
                 gender = gender if gender and gender.strip() else None
                 
-                # Rating questions (rq_1 through rq_10)
                 rating_questions = {}
                 for i in range(1, 11):
                     key = f'rq_{i}'
                     value = data.get(key)
                     rating_questions[key] = int(value) if value else None
                 
-                # Open-ended questions (opq_1 through opq_4)
                 open_ended_questions = {}
                 for i in range(1, 5):
                     key = f'opq_{i}'
                     value = data.get(key, '').strip() or None
                     open_ended_questions[key] = value
                 
-                # Validate that all rating questions are answered
+                """
                 if not all(rating_questions.values()):
                     return JsonResponse({
                         'success': False,
                         'error': 'Please answer all rating questions.'
                     }, status=400)
+                """
                 
-                # Create and save the survey response
                 survey_response = SurveyResponse(
                     age=age,
                     gender=gender,
@@ -64,7 +60,6 @@ def thesis_survey(request):
                 return JsonResponse({
                     'success': True,
                     'message': 'Survey response saved successfully.',
-                    'redirect_url': '/completion/'  # Change this to your completion page URL
                 })
             
             except json.JSONDecodeError:
@@ -82,3 +77,52 @@ def thesis_survey(request):
                     'success': False,
                     'error': str(e)
                 }, status=500)
+
+
+def thesis_feedback(request):
+    if request.method == 'GET':
+        return render(request, 'feedback.html')
+    
+    elif request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            
+            feedback_responses = {}
+            for i in range(1, 10):
+                key = f'f_{i}'
+                value = data.get(key, '').strip() or None
+                feedback_responses[key] = value
+            
+            feedback_response = FeedbackResponse(
+                f_1=feedback_responses['f_1'],
+                f_2=feedback_responses['f_2'],
+                f_3=feedback_responses['f_3'],
+                f_4=feedback_responses['f_4'],
+                f_5=feedback_responses['f_5'],
+                f_6=feedback_responses['f_6'],
+                f_7=feedback_responses['f_7'],
+                f_8=feedback_responses['f_8'],
+                f_9=feedback_responses['f_9']
+            )
+            feedback_response.save()
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Feedback saved successfully.'
+            })
+        
+        except json.JSONDecodeError:
+            return JsonResponse({
+                'success': False,
+                'error': 'Invalid JSON data.'
+            }, status=400)
+        except ValueError:
+            return JsonResponse({
+                'success': False,
+                'error': 'Invalid data format.'
+            }, status=400)
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            }, status=500)
