@@ -13,9 +13,16 @@ def ranking(request):
 def get_next_image(request):
     """Get the next unranked image."""
     try:
+        if not request.session.session_key:
+            request.session.create()
+        session_id = request.session.session_key
+
         all_images = [f"{i}.jpg" for i in range(1, 51)]
         
-        ranked_images = set(ImageRanking.objects.values_list('image_name', flat=True))
+        ranked_images = set(
+            ImageRanking.objects.filter(session_id=session_id)
+            .values_list('image_name', flat=True)
+        )
         
         unranked_images = [img for img in all_images if img not in ranked_images]
         
@@ -51,6 +58,10 @@ def submit_ranking(request):
     """Submit a ranking for an image."""
     if request.method == 'POST':
         try:
+            if not request.session.session_key:
+                request.session.create()
+            session_id = request.session.session_key
+
             data = json.loads(request.body)
             
             image_name = data.get('image_name', '').strip()
@@ -70,6 +81,7 @@ def submit_ranking(request):
                 }, status=400)
             
             image_ranking, created = ImageRanking.objects.update_or_create(
+                session_id=session_id,
                 image_name=image_name,
                 defaults={'ranking': ranking_value}
             )
