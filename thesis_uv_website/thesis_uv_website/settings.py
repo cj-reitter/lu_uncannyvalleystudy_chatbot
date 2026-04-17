@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-load_dotenv()
+load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-kbn@k7_$4dgd3hvz6j$jbrq!6*()w38n_=8@61v%r$!jr&-1gc')
 OLLAMA_API_KEY = os.getenv('OLLAMA_API_KEY')
