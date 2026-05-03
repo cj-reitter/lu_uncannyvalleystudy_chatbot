@@ -29,15 +29,23 @@ OLLAMA_API_KEY = os.getenv('OLLAMA_API_KEY')
 
 # Security Settings
 DEBUG = os.getenv('DEBUG') != 'False'
-CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE') != 'False'
-SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE') != 'False'
-SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT') != 'False'
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE') == 'True'
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE') == 'True'
+SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT') == 'True'
 SECURE_HSTS_SECONDS = os.getenv('SECURE_HSTS_SECONDS')
-SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') != 'False'
-SECURE_HSTS_PRELOAD = os.getenv('SECURE_HSTS_PRELOAD') != 'False'
+SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') == 'True'
+SECURE_HSTS_PRELOAD = os.getenv('SECURE_HSTS_PRELOAD') == 'True'
 
-ALLOWED_HOSTS = ['.lu-thesis-study.com', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://lu-thesis-study.com']
+ALLOWED_HOSTS = [
+    '.lu-thesis-study.com', 
+    '127.0.0.1',
+    'localhost',
+    ]
+CSRF_TRUSTED_ORIGINS = [
+    'https://lu-thesis-study.com',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+    ]
 
 # Application definition
 
@@ -89,7 +97,7 @@ WSGI_APPLICATION = 'thesis_uv_website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'chatbot_database.sqlite3',
     }
 }
 
