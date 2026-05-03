@@ -26,6 +26,7 @@ load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-kbn@k7_$4dgd3hvz6j$jbrq!6*()w38n_=8@61v%r$!jr&-1gc')
 OLLAMA_API_KEY = os.getenv('OLLAMA_API_KEY')
+OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
 
 # Security Settings
 DEBUG = os.getenv('DEBUG') != 'False'

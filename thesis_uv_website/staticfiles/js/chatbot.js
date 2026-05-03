@@ -14,7 +14,9 @@ class Chatbot {
     display() {
         const {inputField, sendButton} = this.args;
 
-        this.addMessageToUI('assistant', 'Hello, how are you today?');
+        const greeting = 'Hello, how are you today?';
+        this.addMessageToUI('assistant', greeting);
+        this.messages.push({role: 'assistant', content: greeting});
         this.loadProfilePic();
 
         setTimeout(() => {
@@ -57,6 +59,10 @@ class Chatbot {
         this.addMessageToUI('user', userMessage);
         inputField.value = '';
 
+        // Snapshot history before adding the current message
+        const history = [...this.messages];
+        this.messages.push({role: 'user', content: userMessage});
+
         const loadingDiv = document.createElement('div');
         loadingDiv.className = 'messages_item messages_item--loading';
         loadingDiv.textContent = 'Generating...';
@@ -70,7 +76,7 @@ class Chatbot {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({message: userMessage})
+                body: JSON.stringify({message: userMessage, history: history})
             });
 
             if (!response.ok) {
@@ -86,8 +92,9 @@ class Chatbot {
                 loadingIndicator.remove();
             }
             
-            // Add bot response to display
+            // Add bot response to display and history
             this.addMessageToUI('assistant', botMessage);
+            this.messages.push({role: 'assistant', content: botMessage});
             
         } catch (error) {
             console.error('Error:', error);

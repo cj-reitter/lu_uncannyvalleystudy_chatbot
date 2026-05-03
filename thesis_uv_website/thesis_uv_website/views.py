@@ -16,11 +16,13 @@ def homepage(request):
 # Chatbot View
 
 def get_ollama_client():
+    headers = {}
+    if settings.OLLAMA_API_KEY:
+        headers['Authorization'] = 'Bearer ' + settings.OLLAMA_API_KEY
     client = Client(
-    host='https://ollama.com',
-    headers={'Authorization': 'Bearer ' + settings.OLLAMA_API_KEY}
+        host=settings.OLLAMA_HOST,
+        headers=headers,
     )
-    
     return client
 
 system_prompt = {
@@ -39,17 +41,18 @@ def chat_api(request):
     try:
         data = json.loads(request.body)
         user_message = data.get('message', '').strip()
-        
+        history = data.get('history', [])
+
         if not user_message:
             return JsonResponse({'error': 'Empty message'}, status=400)
-        
+
         client = get_ollama_client()
-        
-        messages = [
-            system_prompt,
-            bot_greeting,
-            {'role': 'user', 'content': user_message}
-        ]
+
+        messages = (
+            [system_prompt, bot_greeting]
+            + history
+            + [{'role': 'user', 'content': user_message}]
+        )
         
         response = client.chat(
             model='deepseek-v3.2:cloud',
