@@ -40,9 +40,10 @@ class SurveyResponse(models.Model):
     def __str__(self):
         return f"Survey Response - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
 
-
+# Uncomment for pretesting feedback
+""""
 class FeedbackResponse(models.Model):
-    """Model to store pre-testing feedback responses."""
+    # Model to store pre-testing feedback responses.
     
     f_1 = models.TextField(null=True, blank=True) 
     f_2 = models.TextField(null=True, blank=True) 
@@ -64,3 +65,4 @@ class FeedbackResponse(models.Model):
     def __str__(self):
         return f"Feedback Response - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
 
+"""

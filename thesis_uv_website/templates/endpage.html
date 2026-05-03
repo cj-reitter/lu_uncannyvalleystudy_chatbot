@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    Endpage
+{% endblock %}
+
+{% block add_js_script %}
+<script src="{% static 'js/endpage.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <div class='container'>
+        <div class='intro end_intro'>
+            <p>You have officially completed the study, thank you tremendously for your participation. You may close this page whenever you desire to. If you wish to read about the exact nature of the study, please click the checkmark below.</p>
+        </div>
+        <div class="checkbox_body">
+            <input type="checkbox" name="consent_checkbox" id="consent_checkbox">
+            <label for="consent_checkbox">I confirm that by clicking this checkbox, I agree to not disclosing the nature of the study until after 1 July 2026. </label>
+        </div> 
+        <div class='body end_body'>
+            <h2>Nature of the Study:</h2>
+            <p>Note to begin that nothing stated in the consent form was untrue and the only matter obfuscated before the study was the exact variables being studied.</p>
+            <p>This study was a correlational study seeking to explore human-chatbot interaction. Specifically, it looked to measure how the human likeness of a chatbot's profile picture affects the likeability of said chatbot. During your session, the chatbot interface was assigned a random profile picture of a set of 50. This profile picture had a rating assigned to it from 10%-100% based on its human likeness, as described in Mori's paper on the Uncanny Valley, where 10% is an industrial robot and 100% is a healthy human. The chatbot's messages were controlled as much as possible, using the same model and system prompt. During the survey, you were asked both control and experimental questions. The experimental questions were centered around the likeability of the chatbot's profile picture.</p>
+            <p> After we are finished collecting data, the average of the ranking questions will be calculated and plotted against the human likeness of the profile picture, testing to see if there is a relationship; specifically, if that relationship is similar to Mori's Uncanny Valley model.</p>
+            <h2>Contact Info:</h2>
+            <p>As mentioned in the home page, if you have any questions or concerns regarding the study or its findings, feel free to contact either the researcher: <a href = 'mailto:s3794490@leidenuniv.nl'>s3794490@leidenuniv.nl</a><p>
+            <p>or the thesis supervisor: <a href='mailto:p.w.h.van.der.putten@liacs.leidenuniv.nl'>p.w.h.van.der.putten@liacs.leidenuniv.nl</a>.</p>
+        </div>
+    </div>
+{% endblock %}

@@ -3,10 +3,10 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
-from numpy import random as rd
+#from numpy import random as rd
 from ollama import Client
 import json
-from thesis_survey.views import thesis_survey, thesis_feedback
+from thesis_survey.views import thesis_survey#, thesis_feedback
 
 # Home View
 
@@ -68,18 +68,29 @@ def chat_api(request):
 
 # Chatbot View
 def chatbot(request):
+    # Uncomment for chatbot interface randomization
+    """"
     chatbot_templates = ['chatbot_1.html', 'chatbot_2.html']
     ran_chatbot_template = rd.choice(chatbot_templates)
 
     return render(request, ran_chatbot_template)
+    """
+    return render(request, 'chatbot_1.html')
 
 # Survey View
 def survey(request):
     return thesis_survey(request)
 
+# Uncomment for pretesting
+""""
 # Feedback View
 def feedback(request):
     return thesis_feedback(request)
+"""
+
+# Endpage View
+def endpage(request):
+    return render(request, 'endpage.html')
 
 # Ranking View
 def ranking(request):

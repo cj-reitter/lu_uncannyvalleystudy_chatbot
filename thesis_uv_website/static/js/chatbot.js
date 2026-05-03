@@ -59,7 +59,6 @@ class Chatbot {
         this.addMessageToUI('user', userMessage);
         inputField.value = '';
 
-        // Snapshot history before adding the current message
         const history = [...this.messages];
         this.messages.push({role: 'user', content: userMessage});
 
@@ -86,20 +85,17 @@ class Chatbot {
             const data = await response.json();
             const botMessage = data.response;
             
-            // Remove loading indicator
             const loadingIndicator = document.getElementById('loading-indicator');
             if (loadingIndicator) {
                 loadingIndicator.remove();
             }
             
-            // Add bot response to display and history
             this.addMessageToUI('assistant', botMessage);
             this.messages.push({role: 'assistant', content: botMessage});
             
         } catch (error) {
             console.error('Error:', error);
             
-            // Remove loading indicator
             const loadingIndicator = document.getElementById('loading-indicator');
             if (loadingIndicator) {
                 loadingIndicator.remove();
@@ -117,7 +113,6 @@ class Chatbot {
         messageDiv.textContent = content;
         messagesContainer.appendChild(messageDiv);
         
-        // Scroll to bottom
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 }

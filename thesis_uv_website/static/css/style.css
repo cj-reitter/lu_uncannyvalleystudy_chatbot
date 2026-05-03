@@ -98,7 +98,7 @@ Home Page CSS
     margin-right: 1rem;
 }
 
-.home_body,
+.body,
 .survey_form {
     display: flex;
     flex-direction: column;
@@ -122,6 +122,7 @@ Home Page CSS
     background: #d0d0d0;
     padding: 0.5rem;
     margin: 0.5rem;
+    max-width: 70%;
 }
 
 .begin_error {
@@ -409,4 +410,8 @@ Avatar Ranking CSS
 .ranking_button {
     background-color: #808080;
 }
+
+/*
+Endpage CSS
+*/
 

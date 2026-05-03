@@ -12,10 +12,15 @@ urlpatterns = [
     path('chatbot/', views.chatbot),
     path('api/chat/', views.chat_api),
     path('survey/', views.survey),
-    path('feedback/', views.feedback),
+    path('endpage/', views.endpage),
     path('ranking/', ranking_views.ranking),
     path('ranking/get-next-image/', ranking_views.get_next_image),
     path('ranking/submit-ranking/', ranking_views.submit_ranking),
 ]
+
+# Insert this into urlpatterns for pre-testing replication
+"""
+path('feedback/', views.feedback),
+"""
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

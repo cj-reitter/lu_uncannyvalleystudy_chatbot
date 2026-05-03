@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import SurveyResponse, FeedbackResponse
+from .models import SurveyResponse#, FeedbackResponse
 import json
 
 def thesis_survey(request):
@@ -78,7 +78,8 @@ def thesis_survey(request):
                     'error': str(e)
                 }, status=500)
 
-
+# Uncomment for pretesting feedback
+"""
 def thesis_feedback(request):
     if request.method == 'GET':
         return render(request, 'feedback.html')
@@ -126,3 +127,4 @@ def thesis_feedback(request):
                 'success': False,
                 'error': str(e)
             }, status=500)
+"""
