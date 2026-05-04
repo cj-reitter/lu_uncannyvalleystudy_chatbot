@@ -77,6 +77,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-self: center;
+    min-height: 60vh;
 }
 
 /*
@@ -113,7 +114,7 @@ Home Page CSS
     overflow-y: scroll;
     flex-direction: column;
     padding: 1.25rem;
-    margin: 1rem;
+    margin: 1rem 0;
     width: 60%;
     margin-right: auto;
 }
@@ -121,13 +122,7 @@ Home Page CSS
 .checkbox_body {
     background: #d0d0d0;
     padding: 0.5rem;
-    margin: 0.5rem;
-    max-width: 70%;
-}
-
-.begin_error {
-    color:#e21010;
-    display: none;
+    margin: 0.5rem 1rem;
 }
 
 .begin_button {
@@ -174,19 +169,20 @@ Chatbot CSS
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     padding: 1rem 1.25rem;
     border-top-left-radius: 0.1rem;
     border-top-right-radius: 0.1rem;
 }
 
 .profilepic {
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    margin-right: 0.75rem;
+    margin-right: 1.25rem;
+    margin-left: 1.5rem;
+    border: #f1f1f1 solid;
 }
 
 .profilepic img {
@@ -281,9 +277,10 @@ Chatbot CSS
 }
 
 /*
-Profile Pic CSS Changes
+Profile Pic CSS Changes (uncomment for pretesting)
 */
 
+/*
 .chat_interface_2 {
     width: auto;
 }
@@ -293,6 +290,7 @@ Profile Pic CSS Changes
     height: 15rem;
     border-radius: 10%;
 }
+*/
 
 /*
 Survey/Feedback Form CSS
@@ -415,3 +413,8 @@ Avatar Ranking CSS
 Endpage CSS
 */
 
+.end_body {
+    background-color: #ebebeb;
+    border-radius: 0.1rem;
+    margin: 0.5rem 1rem;
+}
