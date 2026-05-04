@@ -20,111 +20,219 @@
             {% csrf_token %}
             <section class='section survey_section'>
                 <h2>Rating Questions (Mandatory)</h2>
-                <h2>Rate your experience based on how much you agree/disagree with the following statements. (1 = Strongly Disagree, 5 = Strongly Agree)</h2>
-                <div class='question rating_question'>
-                    <p>The chatbot's responses were likeable.</p>
-                    <div class='options rating_q_options'>
+                <h2>Rate your experience based on how much you agree/disagree with the following statements, based on the following features of the interaction. (1 = Strongly Disagree, 5 = Strongly Agree)</h2>
+                <section class='section survey_subsection'>
+                    <h2>Chatbot Message Content</h2>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot had competently written messages.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_1' value='1'> 1</label>
                         <label><input type='radio' name='rq_1' value='2'> 2</label>
                         <label><input type='radio' name='rq_1' value='3'> 3</label>
                         <label><input type='radio' name='rq_1' value='4'> 4</label>
                         <label><input type='radio' name='rq_1' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-                <div class='question rating_question'>
-                    <p>The chatbot generally seemed nice.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot asked me friendly questions.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_2' value='1'> 1</label>
                         <label><input type='radio' name='rq_2' value='2'> 2</label>
                         <label><input type='radio' name='rq_2' value='3'> 3</label>
                         <label><input type='radio' name='rq_2' value='4'> 4</label>
                         <label><input type='radio' name='rq_2' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-                <div class='question rating_question'>
-                    <p>The chatbot had a friendly-looking avatar.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot had knowledgeable responses.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_3' value='1'> 1</label>
                         <label><input type='radio' name='rq_3' value='2'> 2</label>
                         <label><input type='radio' name='rq_3' value='3'> 3</label>
                         <label><input type='radio' name='rq_3' value='4'> 4</label>
                         <label><input type='radio' name='rq_3' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-                <div class='question rating_question'>
-                    <p>Interacting with the chatbot was a pleasant expereience.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I liked how the chatbot responded to my prompts.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_4' value='1'> 1</label>
                         <label><input type='radio' name='rq_4' value='2'> 2</label>
                         <label><input type='radio' name='rq_4' value='3'> 3</label>
                         <label><input type='radio' name='rq_4' value='4'> 4</label>
                         <label><input type='radio' name='rq_4' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-                <div class='question rating_question'>
-                    <p>The chatbot's avatar was pleasant.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot's messages were written intelligently</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_5' value='1'> 1</label>
                         <label><input type='radio' name='rq_5' value='2'> 2</label>
                         <label><input type='radio' name='rq_5' value='3'> 3</label>
                         <label><input type='radio' name='rq_5' value='4'> 4</label>
                         <label><input type='radio' name='rq_5' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-                <div class='question rating_question'>
-                    <p>The chatbot's avatar looked like a nice person/agent.</p>
-                    <div class='options rating_q_options'>
+                </section>
+                <section class='section survey_subsection'>
+                    <h2>Chatbot Message Tone</h2>
+                    <div class='question rating_question'>
+                    <p>I thought the way the chatbot spoke was likeable.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_6' value='1'> 1</label>
                         <label><input type='radio' name='rq_6' value='2'> 2</label>
                         <label><input type='radio' name='rq_6' value='3'> 3</label>
                         <label><input type='radio' name='rq_6' value='4'> 4</label>
                         <label><input type='radio' name='rq_6' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-
-                <div class='question rating_question'>
-                    <p>The chatbot's responses were friendly.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I felt the chatbot's tone was intelligent.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_7' value='1'> 1</label>
                         <label><input type='radio' name='rq_7' value='2'> 2</label>
                         <label><input type='radio' name='rq_7' value='3'> 3</label>
                         <label><input type='radio' name='rq_7' value='4'> 4</label>
                         <label><input type='radio' name='rq_7' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-
-                <div class='question rating_question'>
-                    <p>The chatbot's avatar appeared likeable.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot had a friendly attitude.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_8' value='1'> 1</label>
                         <label><input type='radio' name='rq_8' value='2'> 2</label>
                         <label><input type='radio' name='rq_8' value='3'> 3</label>
                         <label><input type='radio' name='rq_8' value='4'> 4</label>
                         <label><input type='radio' name='rq_8' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-
-                <div class='question rating_question'>
-                    <p>The chatbot seemed kind.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot's tone was pleasant.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_9' value='1'> 1</label>
                         <label><input type='radio' name='rq_9' value='2'> 2</label>
                         <label><input type='radio' name='rq_9' value='3'> 3</label>
                         <label><input type='radio' name='rq_9' value='4'> 4</label>
                         <label><input type='radio' name='rq_9' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
-
-                <div class='question rating_question'>
-                    <p>The chatbot had a kind-looking avatar.</p>
-                    <div class='options rating_q_options'>
+                    <div class='question rating_question'>
+                    <p>I found the way the chatbot wrote to be sensible.</p>
+                        <div class='options rating_q_options'>
                         <label><input type='radio' name='rq_10' value='1'> 1</label>
                         <label><input type='radio' name='rq_10' value='2'> 2</label>
                         <label><input type='radio' name='rq_10' value='3'> 3</label>
                         <label><input type='radio' name='rq_10' value='4'> 4</label>
                         <label><input type='radio' name='rq_10' value='5'> 5</label>
+                        </div>
                     </div>
-                </div>
+                </section>
+                <section class='section survey_subsection'>
+                    <h2>Chatbot Avatar</h2>
+                    <div class='question rating_question'>
+                    <p>I thought the avatar seemed friendly.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_11' value='1'> 1</label>
+                        <label><input type='radio' name='rq_11' value='2'> 2</label>
+                        <label><input type='radio' name='rq_11' value='3'> 3</label>
+                        <label><input type='radio' name='rq_11' value='4'> 4</label>
+                        <label><input type='radio' name='rq_11' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I felt the avatar looked intelligent.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_12' value='1'> 1</label>
+                        <label><input type='radio' name='rq_12' value='2'> 2</label>
+                        <label><input type='radio' name='rq_12' value='3'> 3</label>
+                        <label><input type='radio' name='rq_12' value='4'> 4</label>
+                        <label><input type='radio' name='rq_12' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot had a kind-looking avatar.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_13' value='1'> 1</label>
+                        <label><input type='radio' name='rq_13' value='2'> 2</label>
+                        <label><input type='radio' name='rq_13' value='3'> 3</label>
+                        <label><input type='radio' name='rq_13' value='4'> 4</label>
+                        <label><input type='radio' name='rq_13' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I thought the avatar seemed like a pleasant agent.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_14' value='1'> 1</label>
+                        <label><input type='radio' name='rq_14' value='2'> 2</label>
+                        <label><input type='radio' name='rq_14' value='3'> 3</label>
+                        <label><input type='radio' name='rq_14' value='4'> 4</label>
+                        <label><input type='radio' name='rq_14' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I liked the chatbot's avatar.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_15' value='1'> 1</label>
+                        <label><input type='radio' name='rq_15' value='2'> 2</label>
+                        <label><input type='radio' name='rq_15' value='3'> 3</label>
+                        <label><input type='radio' name='rq_15' value='4'> 4</label>
+                        <label><input type='radio' name='rq_15' value='5'> 5</label>
+                        </div>
+                    </div>
+                </section>
+                <section class='section survey_subsection'>
+                    <h2>Overall Chatbot Interaction</h2>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot seemed sensible.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_16' value='1'> 1</label>
+                        <label><input type='radio' name='rq_16' value='2'> 2</label>
+                        <label><input type='radio' name='rq_16' value='3'> 3</label>
+                        <label><input type='radio' name='rq_16' value='4'> 4</label>
+                        <label><input type='radio' name='rq_16' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I thought the chatbot was intelligent.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_17' value='1'> 1</label>
+                        <label><input type='radio' name='rq_17' value='2'> 2</label>
+                        <label><input type='radio' name='rq_17' value='3'> 3</label>
+                        <label><input type='radio' name='rq_17' value='4'> 4</label>
+                        <label><input type='radio' name='rq_17' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I felt the chatbot seemed like a responsible agent.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_18' value='1'> 1</label>
+                        <label><input type='radio' name='rq_18' value='2'> 2</label>
+                        <label><input type='radio' name='rq_18' value='3'> 3</label>
+                        <label><input type='radio' name='rq_18' value='4'> 4</label>
+                        <label><input type='radio' name='rq_18' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I felt the chatbot was pleasant to be with.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_19' value='1'> 1</label>
+                        <label><input type='radio' name='rq_19' value='2'> 2</label>
+                        <label><input type='radio' name='rq_19' value='3'> 3</label>
+                        <label><input type='radio' name='rq_19' value='4'> 4</label>
+                        <label><input type='radio' name='rq_19' value='5'> 5</label>
+                        </div>
+                    </div>
+                    <div class='question rating_question'>
+                    <p>I liked the chatbot.</p>
+                        <div class='options rating_q_options'>
+                        <label><input type='radio' name='rq_20' value='1'> 1</label>
+                        <label><input type='radio' name='rq_20' value='2'> 2</label>
+                        <label><input type='radio' name='rq_20' value='3'> 3</label>
+                        <label><input type='radio' name='rq_20' value='4'> 4</label>
+                        <label><input type='radio' name='rq_20' value='5'> 5</label>
+                        </div>
+                    </div>
+                </section>
             </section>
             <section class='section survey_section'>
                 <h2>Open-Ended Questions (Optional)</h2>
@@ -140,13 +248,18 @@
                 </div>
                 
                 <div class='question openended_question'>
-                    <label for='opq_3'>How did the digital avatar attached to the interface improve/worsen your experience? (Optional)</label>
+                    <label for='opq_3'>How did the chatbot's avatar affect your experience? (Optional)</label>
                     <textarea id='opq_3' name='opq_3' rows='4' placeholder='Enter text here...'></textarea>
                 </div>
 
                 <div class='question openended_question'>
-                    <label for='opq_4'>How did the nature/manner of speaking of the chabot affect your experience? (Optional)</label>
+                    <label for='opq_4'>How did the tone/manner of speaking of the chabot affect your experience? (Optional)</label>
                     <textarea id='opq_4' name='opq_4' rows='4' placeholder='Enter text here...'></textarea>
+                </div>
+
+                <div class='question openended_question'>
+                    <label for='opq_5'>What was your experience with the content of the chatbot's messages? (Optional)</label>
+                    <textarea id='opq_5' name='opq_5' rows='4' placeholder='Enter text here...'></textarea>
                 </div>
             </section>
             <section class='section survey_section'>
@@ -162,8 +275,8 @@
                         <option value='male'>Male</option>
                         <option value='female'>Female</option>
                         <option value='non-binary'>Non-binary</option>
-                        <option value='prefer-not-to-say'>Other</option>
-                        <option value='other'>Prefer not to say</option>
+                        <option value='prefer-not-to-say'>Prefer not to say</option>
+                        <option value='other'>Other</option>
                     </select>
                 </div>
             </section>

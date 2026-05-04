@@ -18,13 +18,13 @@ def thesis_survey(request):
                 gender = gender if gender and gender.strip() else None
                 
                 rating_questions = {}
-                for i in range(1, 11):
+                for i in range(1, 21):
                     key = f'rq_{i}'
                     value = data.get(key)
                     rating_questions[key] = int(value) if value else None
                 
                 open_ended_questions = {}
-                for i in range(1, 5):
+                for i in range(1, 6):
                     key = f'opq_{i}'
                     value = data.get(key, '').strip() or None
                     open_ended_questions[key] = value
@@ -50,10 +50,21 @@ def thesis_survey(request):
                     rq_8=rating_questions['rq_8'],
                     rq_9=rating_questions['rq_9'],
                     rq_10=rating_questions['rq_10'],
+                    rq_11=rating_questions['rq_11'],
+                    rq_12=rating_questions['rq_12'],
+                    rq_13=rating_questions['rq_13'],
+                    rq_14=rating_questions['rq_14'],
+                    rq_15=rating_questions['rq_15'],
+                    rq_16=rating_questions['rq_16'],
+                    rq_17=rating_questions['rq_17'],
+                    rq_18=rating_questions['rq_18'],
+                    rq_19=rating_questions['rq_19'],
+                    rq_20=rating_questions['rq_20'],
                     opq_1=open_ended_questions['opq_1'],
                     opq_2=open_ended_questions['opq_2'],
                     opq_3=open_ended_questions['opq_3'],
-                    opq_4=open_ended_questions['opq_4']
+                    opq_4=open_ended_questions['opq_4'],
+                    opq_5=open_ended_questions['opq_5']
                 )
                 survey_response.save()
                 

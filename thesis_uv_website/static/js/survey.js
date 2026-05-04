@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = new FormData(surveyForm);
             
-            const ratingQuestions = ['rq_1', 'rq_2', 'rq_3', 'rq_4', 'rq_5', 'rq_6', 'rq_7', 'rq_8', 'rq_9', 'rq_10'];
+            const ratingQuestions = ['rq_1', 'rq_2', 'rq_3', 'rq_4', 'rq_5', 'rq_6', 'rq_7', 'rq_8', 'rq_9', 'rq_10', 'rq_11', 'rq_12', 'rq_13', 'rq_14', 'rq_15', 'rq_16', 'rq_17', 'rq_18', 'rq_19', 'rq_20'];
             
             let allRatingsAnswered = true;
             
