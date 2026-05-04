@@ -6,6 +6,7 @@ Chatbot
 {% endblock %}
 
 {% block add_js_script %}
+<script>const CHATBOT_IMAGE_ID = {{ chatbot_image_id }};</script>
 <script src="{% static 'js/chatbot.js' %}" defer></script>
 {% endblock %}
 

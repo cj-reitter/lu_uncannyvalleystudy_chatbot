@@ -37,12 +37,11 @@ class Chatbot {
     }
 
     loadProfilePic() {
-        const randomNum = Math.floor(Math.random() * 50) + 1;
         const profileContainer = document.getElementById('profilepic');
         if (profileContainer) {
             profileContainer.innerHTML = '';
             const img = document.createElement('img');
-            img.src = `/media/${randomNum}.jpg`;
+            img.src = `/media/${CHATBOT_IMAGE_ID}.jpg`;
             img.alt = 'Chatbot Profile';
             profileContainer.appendChild(img);
         }

@@ -2,6 +2,9 @@ from django.db import models
 
 class SurveyResponse(models.Model):
     
+    image_id = models.IntegerField(null=True, blank=True)
+    human_likeness = models.IntegerField(null=True, blank=True)
+    
     age = models.IntegerField(null=True, blank=True)
     GENDER_CHOICES = [
         ('male', 'Male'),

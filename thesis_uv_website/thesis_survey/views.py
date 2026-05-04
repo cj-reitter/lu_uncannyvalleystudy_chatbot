@@ -11,6 +11,9 @@ def thesis_survey(request):
             try:
                 data = json.loads(request.body)
                 
+                image_id = request.session.get('chatbot_image_id')
+                human_likeness = request.session.get('chatbot_human_likeness')
+                
                 age = data.get('age')
                 age = int(age) if age and age.strip() else None
                 
@@ -29,15 +32,15 @@ def thesis_survey(request):
                     value = data.get(key, '').strip() or None
                     open_ended_questions[key] = value
                 
-                """
                 if not all(rating_questions.values()):
                     return JsonResponse({
                         'success': False,
                         'error': 'Please answer all rating questions.'
                     }, status=400)
-                """
                 
                 survey_response = SurveyResponse(
+                    image_id=image_id,
+                    human_likeness=human_likeness,
                     age=age,
                     gender=gender,
                     rq_1=rating_questions['rq_1'],
