@@ -17,7 +17,6 @@ class Chatbot {
         const greeting = 'Hello, how are you today?';
         this.addMessageToUI('assistant', greeting);
         this.messages.push({role: 'assistant', content: greeting});
-        this.loadProfilePic();
 
         setTimeout(() => {
             window.location.href = '/survey';
@@ -33,17 +32,6 @@ class Chatbot {
                     this.onSendButton();
                 }
             });
-        }
-    }
-
-    loadProfilePic() {
-        const profileContainer = document.getElementById('profilepic');
-        if (profileContainer) {
-            profileContainer.innerHTML = '';
-            const img = document.createElement('img');
-            img.src = `/media/${CHATBOT_IMAGE_ID}.jpg`;
-            img.alt = 'Chatbot Profile';
-            profileContainer.appendChild(img);
         }
     }
 
