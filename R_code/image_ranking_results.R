@@ -2,6 +2,11 @@ library(DBI)
 library(RSQLite)
 library(dplyr)
 library(ggplot2)
+library(readr)
+library(tidyverse)
+library(irr)
+library(psych)
+library(purrr)
 
 con <- dbConnect(SQLite(), "../Thesis/lu_uncannyvalleystudy_chatbot/thesis_uv_website/chatbot_database.sqlite3")
 ranking_data <- dbReadTable(con, 'avatar_ranking_imageranking')
@@ -42,6 +47,84 @@ ggplot(ranking_results, aes(x = reorder(image_name, median), y = median)) +
   geom_errorbar(
     aes(ymin = median - mad, ymax = median + mad)
   )
+
+# Inter-rater data
+filtered_data <- ranking_data %>%
+  group_by(session_id) %>%
+  filter(n() == 50) %>% 
+  ungroup()
+
+rater_summary <- ranking_data %>%
+  group_by(session_id) %>%
+  summarise(
+    rater_mean   = mean(ranking, na.rm = TRUE),
+    rater_median = median(ranking, na.rm = TRUE),
+    rater_sd     = sd(ranking, na.rm = TRUE),
+    rater_count     = n()
+  )
+
+individual_ratings <- filtered_data %>%
+  select(session_id, image_name, ranking) %>%
+  pivot_wider(
+    names_from = session_id,
+    values_from = ranking
+  )
+
+session_ids <- colnames(individual_ratings)[-1]
+  
+# Export rater data
+write_csv(rater_summary, "~/../Thesis/rater_data.csv")
+
+# Weighted Kappa
+fleiss_kappa <- kappam.fleiss(ratings_wide[ , -1])
+
+per_rater_kappa <- map_df(session_ids, function(r) {
+  
+  session_id <- individual_ratings[[r]]
+  
+  group_mean <- individual_ratings %>%
+    select(-image_name, -all_of(r)) %>%
+    rowMeans(na.rm = TRUE)
+  
+  group_ord <- round(group_mean / 10) * 10
+  
+  kappa_val <- kappa2(
+    cbind(session_id, group_ord),
+    weight = "squared"
+  )$value
+  
+  tibble(
+    session = r,
+    kappa_with_group = kappa_val
+  )
+})
+
+# ICC
+icc <- ICC(individual_ratings[ , -1])
+icc_table <- icc$results
+
+per_rater_icc <- map_df(session_ids, function(r) {
+  
+  session_id <- individual_ratings[[r]]
+  
+  group_mean <- individual_ratings %>%
+    select(-image_name, -all_of(r)) %>%
+    rowMeans(na.rm = TRUE)
+  
+  mat <- cbind(session_id, group_mean)
+  
+  icc_val <- ICC(mat)$results
+  
+  tibble(
+    rater = r,
+    ICC11 = icc_val["ICC1", "ICC"],
+    ICC21_aa = icc_val["ICC2", "ICC"],
+    ICC21_c = icc_val["ICC3", "ICC"],
+    ICC1k = icc_val["ICC1k", "ICC"],
+    ICC2k_aa = icc_val["ICC2k", "ICC"],
+    ICC2k_c = icc_val["ICC3k", "ICC"]
+  )
+})
 
 # Mean with within-rater normalization
 ranking_z_scores <- ranking_data %>%
