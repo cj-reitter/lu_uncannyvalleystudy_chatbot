@@ -7,6 +7,7 @@ Chatbot
 
 {% block add_js_script %}
 <script>const CHATBOT_IMAGE_ID = {{ chatbot_image_id }};</script>
+<link rel="preload" href="/media/{{ chatbot_image_id }}.jpg" as="image">
 <script src="{% static 'js/chatbot.js' %}" defer></script>
 {% endblock %}
 
