@@ -249,8 +249,6 @@ ranking_norm_results <- ranking_norm %>%
     )
   )
 
-filtered_ranking_norm <- filtered_ranking_norm %>% filter(!is.na(mean_z))
-
 filtered_ranking_norm_results <- filtered_ranking_norm %>%
   mutate(
     mean_bin = cut(

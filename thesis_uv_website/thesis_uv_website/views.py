@@ -3,23 +3,24 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.conf import settings
+import numpy as np
 from numpy import random as rd
 from ollama import Client
 import json
 
 from thesis_survey.views import thesis_survey#, thesis_feedback
 
-IMAGE_LIKENESS = {
-    1: 1, 2: 1, 3: 1, 4: 1, 5: 1,
-    6: 2, 7: 2, 8: 2, 9: 2, 10: 2,
-    11: 3, 12: 3, 13: 3, 14: 3, 15: 3,
-    16: 4, 17: 4, 18: 4, 19: 4, 20: 4,
-    21: 5, 22: 5, 23: 5, 24: 5, 25: 5,
-    26: 6, 27: 6, 28: 6, 29: 6, 30: 6,
-    31: 7, 32: 7, 33: 7, 34: 7, 35: 7,
-    36: 8, 37: 8, 38: 8, 39: 8, 40: 8,
-    41: 9, 42: 9, 43: 9, 44: 9, 45: 9,
-    46: 10, 47: 10, 48: 10, 49: 10, 50: 10,
+HUMAN_LIKENESS = {
+    1: 8, 2: 10, 3: 8, 4: 8, 5: 8,
+    6: 4, 7: 5, 8: 7, 9: 9, 10: 7,
+    11: 8, 12: 9, 13: 7, 14: 9, 15: 8,
+    16: 5, 17: 7, 18: 7, 19: 6, 20: 4,
+    21: 1, 22: 1, 23: 1, 24: 1, 25: 1,
+    26: 1, 27: 2, 28: 5, 29: 3, 30: 6,
+    31: 1, 32: 3, 33: 4, 34: 1, 35: 2,
+    36: 2, 37: 2, 38: 1, 39: 1, 40: 1,
+    41: 1, 42: 4, 43: 9, 44: 8, 45: 1,
+    46: 2, 47: 1, 48: 2, 49: 1, 50: 2,
 }
 
 # Home View
@@ -82,9 +83,13 @@ def chat_api(request):
 
 # Chatbot View
 def chatbot(request):
-    image_id = rd.randint(1, 50)
+    levels = list(HUMAN_LIKENESS.values())
+    level_counts = {l: levels.count(l) for l in set(levels)}
+    weights = np.array([1 / level_counts[l] for l in levels], dtype=float)
+    weights /= weights.sum()
+    image_id = int(rd.choice(list(HUMAN_LIKENESS.keys()), p=weights))
     request.session['chatbot_image_id'] = image_id
-    request.session['chatbot_human_likeness'] = IMAGE_LIKENESS[image_id]
+    request.session['chatbot_human_likeness'] = HUMAN_LIKENESS[image_id]
     return render(request, 'chatbot_1.html', {'chatbot_image_id': image_id})
 
 # Survey View
