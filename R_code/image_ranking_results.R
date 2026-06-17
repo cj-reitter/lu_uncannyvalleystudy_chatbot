@@ -9,7 +9,7 @@ library(psych)
 library(purrr)
 library(ggrepel)
 
-con <- dbConnect(SQLite(), "../Thesis/lu_uncannyvalleystudy_chatbot/thesis_uv_website/chatbot_database.sqlite3")
+con <- dbConnect(SQLite(), "../thesis_uv_website/chatbot_database.sqlite3")
 ranking_data <- dbReadTable(con, 'avatar_ranking_imageranking')
 
 # Inter-rater data
@@ -52,42 +52,25 @@ write_csv(rater_summary, "~/../Thesis/rater_data.csv")
 ggplot(rater_summary, aes(x = rater_mean, y = rater_sd)) +
   geom_point(size = 3, alpha = 0.7) +
   geom_text_repel(
-    aes(label = rater_index),
+    aes(label = rater_count),
     size = 3,
     max.overlaps = Inf
-  )
+  ) +
+labs(
+  x = "Participant's Mean Human Likeness Ranking",
+  y = "Participant's Human Likeness Ranking Std Dev",
+  title = "Participant's Human Likeness Ranking Mean vs. Std Dev",
+  subtitle = "Point Label = Participant's Number of Rankings"
+) +
+  theme_minimal()
 # Rater Median vs. SD Plot
 ggplot(rater_summary, aes(x = rater_median, y = rater_sd)) +
   geom_point(size = 3, alpha = 0.7) +
   geom_text_repel(
-    aes(label = rater_index),
+    aes(label = rater_count),
     size = 3,
     max.overlaps = Inf
   )
-
-# Weighted Kappa
-fleiss_kappa <- kappam.fleiss(ratings_wide[ , -1])
-
-per_rater_kappa <- map_df(session_ids, function(r) {
-  
-  session_id <- individual_ratings[[r]]
-  
-  group_mean <- individual_ratings %>%
-    select(-image_name, -all_of(r)) %>%
-    rowMeans(na.rm = TRUE)
-  
-  group_ord <- round(group_mean / 10) * 10
-  
-  kappa_val <- kappa2(
-    cbind(session_id, group_ord),
-    weight = "squared"
-  )$value
-  
-  tibble(
-    session = r,
-    kappa_with_group = kappa_val
-  )
-})
 
 # ICC
 icc <- ICC(individual_ratings[ , -1])
@@ -149,6 +132,12 @@ ggplot(filtered_ranking_results, aes(x = mean)) +
   geom_histogram(
     breaks = seq(10, 100, by = 10),
     color = "white"
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Mean Human Likness Distribution of Image Dataset \nWithout Standardization",
+    x = "Mean Human Likeness",
+    y = "Count"
   )
 
 ggplot(ranking_results, aes(x = reorder(image_name, mean), y = mean)) +
@@ -195,7 +184,14 @@ ggplot(ranking_results, aes(x = mean, y = sd)) +
     aes(label = image_name),
     size = 3,
     max.overlaps = Inf
-  )
+  ) +
+  labs(
+    x = "Image Mean Human Likeness Ranking",
+    y = "Image Human Likeness Ranking Std Dev",
+    title = "Image Human Likeness Ranking Mean vs. Std Dev",
+    subtitle = "Data Point Label = Image Name"
+  ) +
+  theme_minimal()
 
 # Median vs SD Scatter
 ggplot(ranking_results, aes(x = median, y = sd)) +
@@ -265,12 +261,16 @@ ggplot(ranking_norm_results, aes(x = mean_bin)) +
   )
 
 ggplot(filtered_ranking_norm_results, aes(x = mean_bin)) +
-  geom_histogram(
-    color = "white"
+  geom_bar(width = 0.95) +
+  theme_minimal() +
+  labs(
+    title = "Mean Human Likness Distribution of Image Dataset \nWith Participant Z-Score Standardization",
+    x = "Mean Human Likeness",
+    y = "Count"
   )
 
 ggplot(ranking_norm, aes(x = reorder(image_name, mean_z), y = mean_z)) +
-  geom_col(fill = "light grey") +
+  geom_col( fill = "light grey") +
   geom_errorbar(
     aes(ymin = mean_z - sd_z, ymax = mean_z + sd_z)
   )
