@@ -45,9 +45,6 @@ individual_ratings <- filtered_ranking_data %>%
 
 session_ids <- colnames(individual_ratings)[-1]
 
-# Export rater data
-write_csv(rater_summary, "~/../Thesis/rater_data.csv")
-
 # Rater Mean vs. SD Plot
 ggplot(rater_summary, aes(x = rater_mean, y = rater_sd)) +
   geom_point(size = 3, alpha = 0.7) +
@@ -110,6 +107,11 @@ ranking_results <- ranking_data %>%
     mad = mad(ranking),
     n      = n()
   )
+
+# Export raw csv data, and data by rater/image
+write_csv(ranking_data, "~/../Thesis/raw_ranking_data.csv")
+write_csv(rater_summary, "~/../Thesis/rater_ranking_data.csv")
+write_csv(ranking_results, "~/../Thesis/image_ranking_data.csv")
 
 filtered_ranking_results <- filtered_ranking_data %>%
   group_by(image_name) %>%
