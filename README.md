@@ -9,12 +9,10 @@ The thesis can be found here. The thesis is comprised of two experiments, the fi
 ## Experiments
 
 - **Experiment 1 — Avatar human-likeness ranking:**
-	- Purpose: collect perceived human-likeness scores for a curated image dataset. These scores were used to assign avatar stimuli in Experiment 2.
-	- Implementation: a web-based image-ranking interface (the `avatar_ranking` app) presented images to participants and saved their responses to the project database. The aggregation and plotting of ranking results are in `R_code/image_ranking_results.R`.
+	Experiment 1 aimed to collect data on the perceived human likeness of 50 profile pictures used throughout the thesis. It was made to serve as pre-testing data for Experiment 2 and create an open source database that other academics can use for their own research. Human likeness was on a 10-100% scale based on Mori's Uncanny Valley model. Participants were a page where they were presented with one of the 50 avatars and asked to rank the human likeness of the avatar for 10-100%, repeated until all 50 images were ranked. 83 unique participants responded for a total of 2339 ranking entries. For Experiment 2, 34 of the 83 participants were used for a total of 1700 ranking entries.
 
 - **Experiment 2 — Chatbot Avatar Human Likeness vs. Chatbot Likeability:**
-	- Purpose: measure likeability of a chatbot when paired with a randomly assigned avatar image, and test whether avatar human-likeness (from Experiment 1) predicts likeability.
-	- Implementation: participants interacted with a chat UI served by the `thesis_survey` app. Each session displayed a random avatar image from the dataset and recorded the chat/session responses and post-chat questionnaire. Analysis is in `R_code/chatbot_test_results.R`.
+	Experiment 2 looked to answer the rq described above by comparing the human likeness of the chatbot's avatar with the likeability of the chatbot, by comparing it to the reference model described in Masahiro Mori's Uncanny Valley model. Human likeness was on a 10%-100% scale based on Mori's Uncanny Valley model, and likeability was on a 1-5 Likert scale based on the "likeability" section of the Godspeed Questionnaire. Participants were given 5 minutes to interact with a chatbot with a random avatar from the image dataset attatched to it, then asked to rate the likeability of various aspects of the chatbot. 128 participants responded, with 3 filtered out for the analysis.
 
 ## Repo Navigation
 
