@@ -27,6 +27,10 @@ The thesis can be found here. The thesis is comprised of two experiments, the fi
 - Analysis scripts: [R_code](R_code) (run these to replicate results used in the thesis)
     - Experiment 1 analysis: [image_ranking_results.R](R_code/image_ranking_results.R)
     - Experiment 2 analysis: [chatbot_test_results.R](R_code/chatbot_test_results.R)
+- Experiment 1 Results: csv view of the ranking/image summary, along with the raw results can be found in [ranking_results](ranking_results)
+    - [ranking_results/raw_ranking_data.csv](ranking_results/raw_ranking_data.csv): Raw dataset
+    - [ranking_results/rater_ranking_data.csv](ranking_results/rater_ranking_data.csv): Dataset summarized by rater
+    - [ranking_results/image_ranking_data.csv](ranking_results/image_ranking_data.csv): Dataset summarized by image
 
 ## Website Deployment
 
