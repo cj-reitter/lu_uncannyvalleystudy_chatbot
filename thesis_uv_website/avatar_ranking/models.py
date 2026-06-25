@@ -1,15 +1,17 @@
 from django.db import models
 
 class ImageRanking(models.Model):
-    """Model to store image rankings for human likeness."""
+    """
+    Creates database for storing ranking results
+    """
     
-    session_id = models.CharField(max_length=255, default='legacy')
-    image_name = models.CharField(max_length=255)
+    session_id = models.CharField(max_length=255, default='legacy') # User's CSRF token 
+    image_name = models.CharField(max_length=255) # Image name being ranked
     
     RANKING_CHOICES = [(i, f'{i}%') for i in range(10, 110, 10)]
-    ranking = models.IntegerField(choices=RANKING_CHOICES)
+    ranking = models.IntegerField(choices=RANKING_CHOICES) # Ranking given to image (10-100%)
     
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True) # Time rank is submitted
     
     class Meta:
         verbose_name = 'Image Ranking'
