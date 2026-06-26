@@ -1,11 +1,16 @@
 from django.db import models
 
 class SurveyResponse(models.Model):
+    """
+    Creates database for storing thesis survey responses
+    """
     
-    image_id = models.IntegerField(null=True, blank=True)
-    human_likeness = models.IntegerField(null=True, blank=True)
+    image_id = models.IntegerField(null=True, blank=True) # File name of the image generated as the chatbot's avatar
+    human_likeness = models.IntegerField(null=True, blank=True) # Human likeness rating of the chatbot's avatar
     
-    age = models.IntegerField(null=True, blank=True)
+    age = models.IntegerField(null=True, blank=True) # Participant age
+
+    # Participant gender based on gender options
     GENDER_CHOICES = [
         ('male', 'Male'),
         ('female', 'Female'),
@@ -15,7 +20,7 @@ class SurveyResponse(models.Model):
     ]
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES, null=True, blank=True)
     
-    
+    # Participant ratings (1-5) given for the 20 rating questions
     RATING_CHOICES = [(i, str(i)) for i in range(1, 6)]
     rq_1 = models.IntegerField(null=True, blank=True, choices=RATING_CHOICES)  
     rq_2 = models.IntegerField(null=True, blank=True, choices=RATING_CHOICES)  
@@ -38,13 +43,14 @@ class SurveyResponse(models.Model):
     rq_19 = models.IntegerField(null=True, blank=True, choices=RATING_CHOICES)
     rq_20 = models.IntegerField(null=True, blank=True, choices=RATING_CHOICES)
     
+    # Participant message content of the 5 open-ended questions
     opq_1 = models.TextField(null=True, blank=True)  
     opq_2 = models.TextField(null=True, blank=True) 
     opq_3 = models.TextField(null=True, blank=True) 
     opq_4 = models.TextField(null=True, blank=True)
     opq_5 = models.TextField(null=True, blank=True)  
     
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True) # Time survey is submitted
     
     class Meta:
         verbose_name = 'Survey Response'
@@ -57,8 +63,9 @@ class SurveyResponse(models.Model):
 # Uncomment for pretesting feedback
 """"
 class FeedbackResponse(models.Model):
-    # Model to store pre-testing feedback responses.
+    #Creates database for storing thesis survey responses
     
+    # Participant response for 9 feedback questions
     f_1 = models.TextField(null=True, blank=True) 
     f_2 = models.TextField(null=True, blank=True) 
     f_3 = models.TextField(null=True, blank=True) 
@@ -69,7 +76,7 @@ class FeedbackResponse(models.Model):
     f_8 = models.TextField(null=True, blank=True) 
     f_9 = models.TextField(null=True, blank=True) 
     
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True) # Time feedback is sbumitted
     
     class Meta:
         verbose_name = 'Feedback Response'

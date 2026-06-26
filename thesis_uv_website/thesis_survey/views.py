@@ -4,40 +4,56 @@ from .models import SurveyResponse#, FeedbackResponse
 import json
 
 def thesis_survey(request):
+    """
+    Either directs website to 'survey' page or submits survey response to survey database, 
+    depending on request
+
+    :param request: 'GET' directs website to 'survey' page and 'POST' submits survey responses
+
+    """
+
+    # Directs website to "survey" page
     if request.method == 'GET':
         return render(request, 'survey.html')
     
+    # Stores survey response to survey database
     elif request.method == 'POST':
             try:
-                data = json.loads(request.body)
+                data = json.loads(request.body) # Loads survey response data
                 
-                image_id = request.session.get('chatbot_image_id')
-                human_likeness = request.session.get('chatbot_human_likeness')
+                image_id = request.session.get('chatbot_image_id') # Gets file name of image used for chatbot avatar
+                human_likeness = request.session.get('chatbot_human_likeness') # Gets human likeness ranking of image
                 
+                # Gets age of participant if reported
                 age = data.get('age')
                 age = int(age) if age and age.strip() else None
                 
+                # Gets gender of participant if reported
                 gender = data.get('gender')
                 gender = gender if gender and gender.strip() else None
                 
+                # Gets responses to rating questions
                 rating_questions = {}
                 for i in range(1, 21):
                     key = f'rq_{i}'
                     value = data.get(key)
                     rating_questions[key] = int(value) if value else None
                 
+                # Gets responses to openended questions
                 open_ended_questions = {}
                 for i in range(1, 6):
                     key = f'opq_{i}'
                     value = data.get(key, '').strip() or None
                     open_ended_questions[key] = value
                 
+                # Returns an error if form somehow submitted without all rating questions answered
                 if not all(rating_questions.values()):
                     return JsonResponse({
                         'success': False,
                         'error': 'Please answer all rating questions.'
                     }, status=400)
                 
+                # Stores survey data to survey database
                 survey_response = SurveyResponse(
                     image_id=image_id,
                     human_likeness=human_likeness,
@@ -95,19 +111,30 @@ def thesis_survey(request):
 # Uncomment for pretesting feedback
 """
 def thesis_feedback(request):
+    
+    Either directs website to 'feedback' page or submits feedback to feedback database, 
+    depending on request
+
+    :param request: 'GET' directs website to 'feedback' page and 'POST' submits feedback responses
+
+    
+    # Directs website to "survey" page
     if request.method == 'GET':
         return render(request, 'feedback.html')
     
+    # Stores feedback to feedback database
     elif request.method == 'POST':
         try:
             data = json.loads(request.body)
             
+            # Gets responses to feedback questions
             feedback_responses = {}
             for i in range(1, 10):
                 key = f'f_{i}'
                 value = data.get(key, '').strip() or None
                 feedback_responses[key] = value
             
+            # Stores feedback data to feedback database
             feedback_response = FeedbackResponse(
                 f_1=feedback_responses['f_1'],
                 f_2=feedback_responses['f_2'],
