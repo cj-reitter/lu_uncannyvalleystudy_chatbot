@@ -5,6 +5,7 @@ from avatar_ranking import views as ranking_views
 from django.conf.urls.static import static
 from django.conf import settings
 
+# Webpage pathing for website urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage),
@@ -23,4 +24,5 @@ urlpatterns = [
 path('feedback/', views.feedback),
 """
 
+# Loads avatar database to the site
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

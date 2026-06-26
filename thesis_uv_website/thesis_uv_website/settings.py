@@ -5,17 +5,14 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
+# Loads .env file for environmental variables
 load_dotenv(BASE_DIR / '.env')
 
+# Secret key for configuring Django
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-kbn@k7_$4dgd3hvz6j$jbrq!6*()w38n_=8@61v%r$!jr&-1gc')
-OLLAMA_API_KEY = os.getenv('OLLAMA_API_KEY')
-OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
+
+OLLAMA_API_KEY = os.getenv('OLLAMA_API_KEY') # API key for Ollama calls
+OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434') # Hosting server for API calls, defaults to local host
 
 # Security Settings
 DEBUG = os.getenv('DEBUG') != 'False'
@@ -26,6 +23,7 @@ SECURE_HSTS_SECONDS = os.getenv('SECURE_HSTS_SECONDS')
 SECURE_HSTS_INCLUDE_SUBDOMAINS = os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS') == 'True'
 SECURE_HSTS_PRELOAD = os.getenv('SECURE_HSTS_PRELOAD') == 'True'
 
+# Allowed hosts and urls for the website
 ALLOWED_HOSTS = [
     '.lu-thesis-study.com', 
     '127.0.0.1',
@@ -143,6 +141,7 @@ STORAGES = {
     },
 }
 
+# Image dataset
 MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
