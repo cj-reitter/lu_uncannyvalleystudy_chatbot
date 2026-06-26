@@ -1,12 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
+    /**
+     * Sends survey responses to survey database when participants hit submit button, and redirect
+     *  them to the endpage page
+     */
+
     const surveyForm = document.getElementById('survey_form');
     
     if (surveyForm) {
+
         surveyForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const formData = new FormData(surveyForm);
             
+            // Tracks if participant answered all rating questions
             const ratingQuestions = ['rq_1', 'rq_2', 'rq_3', 'rq_4', 'rq_5', 'rq_6', 'rq_7', 'rq_8', 'rq_9', 'rq_10', 'rq_11', 'rq_12', 'rq_13', 'rq_14', 'rq_15', 'rq_16', 'rq_17', 'rq_18', 'rq_19', 'rq_20'];
             
             let allRatingsAnswered = true;
@@ -18,17 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
+            // Alerts user if not all rating questions have been answered
             if (!allRatingsAnswered) {
                 alert('Please answer all rating questions to submit the survey.');
                 return;
             }
             
+            // Records participant responses
             const data = {};
             for (let [key, value] of formData.entries()) {
                 if (key !== 'csrfmiddlewaretoken') {
                     data[key] = value;
                 }
             }
+
+            // Sends survey data to the survey database
             
             const csrfToken = formData.get('csrfmiddlewaretoken');
             
@@ -41,6 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(data)
             })
             .then(response => response.json())
+
+            // Redirects users to endpage page if survey response successfully submitted
             .then(data => {
                 if (data.success) {
                     window.location.href = '/endpage';

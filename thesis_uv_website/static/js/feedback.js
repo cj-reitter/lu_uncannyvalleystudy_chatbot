@@ -1,7 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
+    /**
+     * Sends pretesting feedback to feedback database when participants hit submit button, and redirect
+     *  them to the ranking page
+     */
     const feedbackForm = document.getElementById('feedback_form');
     
     if (feedbackForm) {
+
+        // Records participant responses to pretesting feedback questions when they hit submit
         feedbackForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -14,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
+            // Sends pretesting feedback data to the feedback database
             const csrfToken = formData.get('csrfmiddlewaretoken');
             
             fetch(feedbackForm.action || window.location.pathname, {
@@ -25,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(data)
             })
             .then(response => response.json())
+
+            // Redirects users to ranking page if pretesting feedback successfully submitted
             .then(data => {
                 if (data.success) {
                     window.location.href = '/ranking';

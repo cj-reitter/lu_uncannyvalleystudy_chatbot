@@ -4,7 +4,7 @@ from .models import ImageRanking
 @admin.register(ImageRanking)
 class ImageRankingAdmin(admin.ModelAdmin):
     """
-    Admin class so session id can be tracked during ranking
+    Admin class for session id tracking
     """
     list_display = ('image_name', 'ranking', 'created_at')
     list_filter = ('ranking', 'created_at')
