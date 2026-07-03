@@ -22,15 +22,16 @@ The thesis can be found here. The thesis is comprised of two experiments, the fi
     - [thesis_uv_website](thesis_uv_website/thesis_uv_website/): Django framework for the lu-thesis-study.com site and chatbot integration.
 - Thesis Database: [thesis_uv_website/chatbot_database.sqlite3](thesis_uv_website/chatbot_database.sqlite3)
     - Table "avatar_ranking_imageranking" contains ranking results from Experiment 1.
-    - Table "thesis_survey_surveyresponse" contains survey results from Experiment 2
-- Avatar images: [thesis_uv_website/media](thesis_uv_website/media)
+    - Table "thesis_survey_surveyresponse" contains survey results from Experiment 2.
+- Avatar images: [thesis_uv_website/media](thesis_uv_website/media), collection of the images ranked in HuLA-50 and the chatbot profile pictures used in Experiment 2.
+  	- <img src="R_code/R_results/profile_pics.png" alt="profile picture collage" style="float: left; margin-right: 10px; width: 600px" />
 - Analysis scripts: [R_code](R_code) (run these to replicate results used in the thesis)
     - Experiment 1 analysis: [image_ranking_results.R](R_code/image_ranking_results.R)
     - Experiment 2 analysis: [chatbot_test_results.R](R_code/chatbot_test_results.R)
-- Experiment 1 Results: csv view of the ranking/image summary, along with the raw results can be found in [ranking_results](ranking_results)
-    - [ranking_results/raw_ranking_data.csv](ranking_results/raw_ranking_data.csv): Raw dataset
-    - [ranking_results/rater_ranking_data.csv](ranking_results/rater_ranking_data.csv): Dataset summarized by rater
-    - [ranking_results/image_ranking_data.csv](ranking_results/image_ranking_data.csv): Dataset summarized by image
+- Experiment 1 Results: csv view of the ranking/image summary, along with the raw results can be found in [HuLA-50](ranking_results)
+    - [HuLA-50/raw_ranking_data.csv](HuLA-50/raw_ranking_data.csv): Raw dataset
+    - [HuLA-50/rater_ranking_data.csv](HuLA-50/rater_ranking_data.csv): Dataset summarized by rater
+    - [HuLA-50/image_ranking_data.csv](HuLA-50/image_ranking_data.csv): Dataset summarized by image
 
 ## Website Deployment
 
