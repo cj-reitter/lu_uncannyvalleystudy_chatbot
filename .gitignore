@@ -1,3 +1,6 @@
 # Ignores virtual enviornment and environment variables.
 .venv/
 .env
+
+# Ignores R History
+.Rhistory
