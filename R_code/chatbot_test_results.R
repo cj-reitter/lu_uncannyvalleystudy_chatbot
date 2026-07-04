@@ -141,15 +141,15 @@ pred_df <- pred_df %>%
   )
 
 # Plot Overall Results
-#input_dir  <- "../thesis_uv_website/media"
-#output_dir <- "./media_small"
+input_dir  <- "../thesis_uv_website/media"
+output_dir <- "./media_small"
 
-#files <- list.files(input_dir, full.names = TRUE)
+files <- list.files(input_dir, full.names = TRUE)
 
-#for (f in files) {
-#  img <- image_read(f)
-#  img_small <- image_scale(img, "150")   # width = 150px
-#  image_write(img_small, file.path(output_dir, basename(f)))
+for (f in files) {
+  img <- image_read(f)
+  img_small <- image_scale(img, "150")   # width = 150px
+  image_write(img_small, file.path(output_dir, basename(f)))}
 
 
 ggplot(results, aes(x = human_likeness, y = likeability)) +
@@ -161,6 +161,16 @@ ggplot(results, aes(x = human_likeness, y = likeability)) +
 
 # Image Regression
 
+image_results <- results %>%
+  group_by(image_id) %>%
+  summarise(
+    likeability = mean(likeability, na.rm = TRUE),
+    human_likeness = mean(human_likeness, na.rm = TRUE),
+    n_x = n()
+  )
+
+mean_image_x <- mean(image_results$n_x, na.rm = TRUE)
+
 image_results <- image_results %>%
   group_by(human_likeness) %>%
   arrange(likeability) %>%
@@ -169,7 +179,8 @@ image_results <- image_results %>%
     n_y = n(),
     likeability_jit_raw = likeability +
       (rank_y - (n_y + 1) / 2) * 0.07,
-    likeability_jit = pmin(5, likeability_jit_raw)
+    likeability_jit = pmin(5, likeability_jit_raw),
+    image_path = file.path(output_dir, paste0(image_id, ".jpg"))
   ) %>%
   ungroup()
 

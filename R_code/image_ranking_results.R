@@ -70,6 +70,13 @@ ggplot(rater_summary, aes(x = rater_median, y = rater_sd)) +
   )
 
 # ICC
+individual_ratings <- ranking_data %>%
+  select(session_id, image_name, ranking) %>%
+  pivot_wider(
+    names_from = session_id,
+    values_from = ranking
+  )
+
 icc <- ICC(individual_ratings[ , -1])
 icc_table <- icc$results
 
@@ -107,6 +114,7 @@ ranking_results <- ranking_data %>%
     mad = mad(ranking),
     n      = n()
   )
+mean_n <- mean(ranking_results$n, na.rm = TRUE)
 
 # Export raw csv data, and data by rater/image
 write_csv(ranking_data, "~/../Thesis/raw_ranking_data.csv")
@@ -180,7 +188,7 @@ ggplot(filtered_ranking_results, aes(x = reorder(image_name, median), y = median
   )
 
 # Mean vs SD Scatter
-ggplot(ranking_results, aes(x = mean, y = sd)) +
+ggplot(filtered_ranking_results, aes(x = mean, y = sd)) +
   geom_point(size = 3, alpha = 0.7) +
   geom_text_repel(
     aes(label = image_name),
